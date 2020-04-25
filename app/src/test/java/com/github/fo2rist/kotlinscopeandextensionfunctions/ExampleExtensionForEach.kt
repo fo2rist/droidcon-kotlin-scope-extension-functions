@@ -2,7 +2,6 @@ package com.github.fo2rist.kotlinscopeandextensionfunctions
 
 import org.junit.Test
 import java.lang.Thread.currentThread
-import kotlin.random.Random.Default.nextLong
 
 class ExampleExtensionForEach {
 
@@ -15,6 +14,7 @@ class ExampleExtensionForEach {
         println("Done!")
     }
 
+
     // Kotlin's forEach for reference
     //public inline fun <T> Iterable<T>.forEach(action: (T) -> Unit): Unit {
     //    for (element in this) action(element)
@@ -24,10 +24,10 @@ class ExampleExtensionForEach {
     }
 
 
-    private inline fun <T> Iterable<T>.myParallelForEach(action: (T) -> Unit): Unit {
+    private inline fun <T : Int> Iterable<T>.myParallelForEach(action: (T) -> Unit): Unit {
         for (element in this) {
-            Thread.sleep(nextLong(1000))
-            print("In ${currentThread()} ")
+            Thread.sleep(element * 10L) // simulate work
+
             action(element)
         }
     }
