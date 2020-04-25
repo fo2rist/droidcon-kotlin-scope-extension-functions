@@ -9,7 +9,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class ExampleTestHelpers(
+class ExampleImprovedTestHelpers(
     private val left: String?,
     private val right: String?,
     private val result: String
@@ -17,10 +17,10 @@ class ExampleTestHelpers(
     companion object {
         @JvmStatic
         @Parameterized.Parameters(name = "'{0} + {1} gives {2}")
-        fun testData() = listOf(
-            arrayOf(null, "a", "a"),
-            arrayOf("a", null, "a"),
-            arrayOf("a", "a", "aa")
+        fun testData() = parametersOf(
+            (null and "a") shouldReturn "a",
+            ("a" and null) shouldReturn "a",
+            ("a" and "a") shouldReturn "aa"
         )
     }
 
